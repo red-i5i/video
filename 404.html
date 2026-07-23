@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script>
+    // Extract the video name from missing route (e.g., /repo/video/myclip -> myclip)
+    const pathSegments = window.location.pathname.split('/').filter(Boolean);
+    const videoName = pathSegments[pathSegments.length - 1];
+
+    // Get base repository path
+    const repoPath = pathSegments.length > 1 ? '/' + pathSegments[0] : '';
+
+    // Redirect to index.html with the video query parameter
+    if (videoName && videoName !== 'video') {
+      window.location.replace(repoPath + '/?v=' + encodeURIComponent(videoName));
+    } else {
+      window.location.replace(repoPath + '/');
+    }
+  </script>
+</head>
+<body>
+  <p>Redirecting to video player...</p>
+</body>
+</html>
